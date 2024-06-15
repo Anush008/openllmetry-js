@@ -212,7 +212,7 @@ export class QdrantInstrumentation extends InstrumentationBase<any> {
   private _setUpsertAttributes(
     span: Span,
     collectionName: string,
-    params: qdrant.Schemas["PointInsertOperations"],
+    params: UpsertRequest,
   ) {
     span.setAttribute("db.qdrant.upsert.collection_name", collectionName);
     if ("batch" in params) {
@@ -228,7 +228,7 @@ export class QdrantInstrumentation extends InstrumentationBase<any> {
   private _setDeleteAttributes(
     span: Span,
     collectionName: string,
-    params: qdrant.Schemas["PointsSelector"],
+    params: DeleteRequest,
   ) {
     span.setAttribute("db.qdrant.delete.collection_name", collectionName);
     if ("filter" in params) {
@@ -263,7 +263,7 @@ export class QdrantInstrumentation extends InstrumentationBase<any> {
   private _setRetrieveAttributes(
     span: Span,
     collectionName: string,
-    params: qdrant.Schemas["PointRequest"],
+    params: RetrieveRequest,
   ) {
     span.setAttribute("db.qdrant.retrieve.collection_name", collectionName);
     span.setAttribute(
@@ -278,7 +278,7 @@ export class QdrantInstrumentation extends InstrumentationBase<any> {
   private _setSearchAttributes(
     span: Span,
     collectionName: string,
-    params: qdrant.Schemas["SearchRequest"],
+    params: SearchRequest,
   ) {
     span.setAttribute("db.qdrant.search.collection_name", collectionName);
     const query_request_event = span.addEvent("qdrant.search.request");
